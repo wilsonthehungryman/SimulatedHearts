@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package simulatedhearts;
-
 /**
  *
  * @author Wilson
@@ -16,6 +15,13 @@ public class SimulatedHearts {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        run();
     }
+    
+    public static void run(){
+        Game game = new Game(4);
+        game.play();
+    }
+    
     
 }
