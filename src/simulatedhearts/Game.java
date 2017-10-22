@@ -6,6 +6,7 @@
 package simulatedhearts;
 
 import carddeck.*;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -16,7 +17,7 @@ public class Game {
     static final PlayingCard LEAD = new PlayingCard(Face.TWO, Suit.CLUBS, 0);
     static final int CONTROL = 26;
     static final int CAP = 100;
-    HeartsDeck deck;
+    HeartsDeck<PlayingCard> deck;
     int playerTurn;
     Player[] players;
     Trick[] tricks;
@@ -48,13 +49,13 @@ public class Game {
         System.out.println("Starting Playing");
 
         while (!hasLoser()) {
-            System.out.println("");
+            System.out.println();
             setUp();
             playRound();
             reclaimCards(tricks);
         }
 
-        System.out.println("");
+        System.out.println();
         gameSummary();
     }
 
@@ -121,7 +122,7 @@ public class Game {
         for (int i = 0; i < players.length; i++)
             if (players[i].hasCard(target))
                 return i;
-        return 0;
+        throw new NoSuchElementException();
     }
 
     public boolean hasLoser() {
