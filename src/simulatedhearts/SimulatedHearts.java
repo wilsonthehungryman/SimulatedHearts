@@ -21,6 +21,9 @@ public class SimulatedHearts {
     public static void run(){
         Game game = new Game(4);
         game.play();
+        System.out.println("ENDLESS, BEGIN!");
+        EndlessGame g = new EndlessGame();
+        g.playRound();
     }
     
     

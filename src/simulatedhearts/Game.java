@@ -22,7 +22,7 @@ public class Game {
     Player[] players;
     Trick[] tricks;
 
-    Game(int players) {
+    public Game(int players) {
         deck = new HeartsDeck();
         deck.createDeck();
         this.players = new Player[players];
@@ -30,13 +30,13 @@ public class Game {
         createPlayers();
     }
 
-    private void setUp() {
+    protected void setUp() {
         deck.shuffle();
         deal();
         playerTurn = find(LEAD);
     }
 
-    private void reclaimCards(Trick[] tricks) {
+    protected void reclaimCards(Trick[] tricks) {
         for (Trick trick : tricks) {
             for (PlayingCard card : trick.getTrick())
                 if (card != null)
@@ -103,14 +103,14 @@ public class Game {
         return trick;
     }
 
-    private void createPlayers() {
+    protected void createPlayers() {
         System.out.println("Creating Players");
         String[] names = {"Lain", "Bender", "Spike", "Rick", "Cartman"};
         for (int i = 0; i < players.length; i++)
             players[i] = new Player(null, names[i]);
     }
 
-    private void deal() {
+    protected void deal() {
         if (deck.getSize() == 0)
             return;
         HeartsHand[] hands = deck.deal();
@@ -118,7 +118,7 @@ public class Game {
             players[i].setHand(hands[i]);
     }
 
-    private int find(PlayingCard target) {
+    protected int find(PlayingCard target) {
         for (int i = 0; i < players.length; i++)
             if (players[i].hasCard(target))
                 return i;
@@ -162,7 +162,7 @@ public class Game {
         System.out.println(summary.toString());
     }
 
-    private Player[] orderByScore() {
+    protected Player[] orderByScore() {
         Player[] ranked = new Player[players.length];
         for (Player p : players) {
             Player current = p;

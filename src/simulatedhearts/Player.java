@@ -69,6 +69,10 @@ public class Player {
         return hand.hasCard(target);
     }
 
+    public void insert(PlayingCard p){
+        hand.insert(p);
+    }
+    
     public PlayingCard play(Trick trick) {
         PlayingCard myPlay;
         if (trick.lead() == null)
@@ -105,7 +109,8 @@ public class Player {
     
     PlayingCard[] validPlays(PlayingCard lead){
         if(lead == null || !hand.hasSuit(lead.getSuit()))
-            return hand.getHand();
+            return hand.getCleanHand();
+        
         PlayingCard[] returnValues = new PlayingCard[hand.getSuitCount(
                 lead.getSuit())];
         int returnValuesIndex = 0;
